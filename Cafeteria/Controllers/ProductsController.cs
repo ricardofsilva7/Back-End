@@ -20,12 +20,25 @@ namespace Cafeteria.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Product.ToListAsync());
-        }
+        public async Task<IActionResult> Index(string id)
+{
+            if (_context.Product == null)
+            {
+                return Problem("Entity set 'CafeteriaContext.Product'  is null.");
+            }
 
-        // GET: Products/Details/5
+                var products =  from p in _context.Product
+                    select p;
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                products = products.Where(s => s.Name!.ToUpper().Contains(id.ToUpper()));
+            }
+
+                return View(await products.ToListAsync());
+}
+        
+                // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
