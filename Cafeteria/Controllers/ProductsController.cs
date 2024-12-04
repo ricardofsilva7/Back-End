@@ -20,22 +20,25 @@ namespace Cafeteria.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> Index(string searchString)
 {
-            if (_context.Product == null)
-            {
-                return Problem("Entity set 'CafeteriaContext.Product'  is null.");
-            }
+    if (_context.Product == null)
+    {
+        return Problem("Entity set 'CafeteriaContext.Product' is null.");
+    }
 
-                var products =  from p in _context.Product
-                    select p;
+    // Inicia a consulta de produtos
+    var products = from p in _context.Product
+                   select p;
 
-            if (!String.IsNullOrEmpty(id))
-            {
-                products = products.Where(s => s.Name!.ToUpper().Contains(id.ToUpper()));
-            }
+    // Aplica o filtro, se searchString não estiver vazio
+    if (!string.IsNullOrEmpty(searchString))
+    {
+        products = products.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper()));
+    }
 
-                return View(await products.ToListAsync());
+    // Retorna a lista de produtos filtrados para a View
+    return View(await products.ToListAsync());
 }
         
                 // GET: Products/Details/5
@@ -166,5 +169,7 @@ namespace Cafeteria.Controllers
         {
             return _context.Product.Any(e => e.Id == id);
         }
+
+        
     }
 }

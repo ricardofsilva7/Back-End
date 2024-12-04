@@ -71,7 +71,7 @@
 
         <div>
             <label>Total Price: </label>
-            <span id="totalPrice">@Model.TotalPrice.ToString("C")</span>
+            <span id="totalPrice">@Model.TotalPrice.ToString("C", new System.Globalization.CultureInfo("en-US"))</span>
         </div>
 
         <form asp-action="Create" method="post">

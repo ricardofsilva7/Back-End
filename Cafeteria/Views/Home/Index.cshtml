@@ -1,8 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to Our Cafe";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@* Definindo o estilo da página *@
+<style>
+    body {
+        background-color: #f4f1ee; /* Cor suave de fundo */
+        font-family: 'Arial', sans-serif; 
+    }
+
+    .header {
+        background-color: #7c594f; /* Cor de fundo semelhante ao marrom de café */
+        color: white;
+        padding: 50px;
+        text-align: center;
+        border-bottom: 5px solid #d1b29f; /* Detalhe para dar um toque de elegância */
+    }
+
+    .header img {
+        max-width: 200px; /* Define o tamanho máximo do logo */
+        height: auto;
+    }
+
+    .header p {
+        font-size: 1.2em;
+    }
+
+    .intro-section {
+        text-align: center;
+        margin: 50px 0;
+    }
+
+    .intro-section img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+</style>
+
+@* Cabeçalho da página com logo *@
+<div class="header">
+    <img src="~/images/coffe2.png" alt="Cafe Logo" /> <!-- Substitua pelo seu logo -->
+    <p>Welcome to our cozy cafe! Enjoy our freshly brewed coffee and delicious treats.</p>
+</div>
+
+@* Seção de Introdução com imagem e texto *@
+<div class="intro-section">
+    <h2>About Us</h2>
+    <p>Our cafe is the perfect place to enjoy freshly brewed coffee, delightful desserts, and savory snacks. Whether you're here for a quick break or to spend some quality time, we are happy to serve you!</p>
 </div>

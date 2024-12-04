@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\PROJETOS - GITHUB\\BackEnd - 2º Semestre\\Cafeteria\\wwwroot\\images\\coffe1.png",
+      "PackagePath": "staticwebassets\\images\\coffe1.png"
+    },
+    {
+      "Id": "C:\\PROJETOS - GITHUB\\BackEnd - 2º Semestre\\Cafeteria\\wwwroot\\images\\coffe2.png",
+      "PackagePath": "staticwebassets\\images\\coffe2.png"
+    },
+    {
       "Id": "C:\\PROJETOS - GITHUB\\BackEnd - 2º Semestre\\Cafeteria\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
