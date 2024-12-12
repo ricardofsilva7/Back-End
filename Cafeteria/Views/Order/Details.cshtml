@@ -7,23 +7,41 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Order</h4>
+    <h4>Order number @Model.Id</h4>
+    <p>Order placed on @Model.OrderDate</p>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-    </dl>
+    
+    <h4>Order Items</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Sub Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.Category</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.ToString("F2")</td>
+                    <td>@(item.Quantity * item.Price).ToString("F2")</td>
+                    <td>@(item.Quantity * item.Product.Price).ToString("C")</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <h5>Total Price</h5>
+    <p>@Model.TotalPrice.ToString("F2")</p>
 </div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

@@ -3,6 +3,7 @@ using System;
 using Cafeteria.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cafeteria.Migrations
 {
     [DbContext(typeof(CafeteriaContext))]
-    partial class CafeteriaContextModelSnapshot : ModelSnapshot
+    [Migration("20241205170557_UpdateOrderItem")]
+    partial class UpdateOrderItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -40,10 +43,6 @@ namespace Cafeteria.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("INTEGER");
 
@@ -59,8 +58,6 @@ namespace Cafeteria.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderItem");
                 });
@@ -95,18 +92,9 @@ namespace Cafeteria.Migrations
                     b.HasOne("Cafeteria.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cafeteria.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Cafeteria.Models.Order", b =>
